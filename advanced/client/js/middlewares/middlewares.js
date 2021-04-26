@@ -25,18 +25,9 @@ const postTodoMiddleware = (store, action) => {
         body: JSON.stringify({ name: action.payload }),
       });
 
-      const new_id =
-        store.state.todos.length === 0
-          ? 0
-          : store.state.todos[store.state.todos.length - 1].id + 1;
       store.dispatch({
-        type: 'SET_STORE_STATE',
-        payload: {
-          todos: [
-            ...store.state.todos,
-            { id: new_id, name: action.payload, done: false },
-          ],
-        },
+        type: 'ADD_TODO',
+        payload: action.payload,
       });
     })();
   }
